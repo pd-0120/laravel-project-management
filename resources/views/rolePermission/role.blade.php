@@ -3,7 +3,7 @@
 @section('contents')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
-        <x-page-subheader :pagename="'Dashboard'"/>
+        <x-page-subheader :pagename="'Roles'"/>
         <!--end::Subheader-->
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
