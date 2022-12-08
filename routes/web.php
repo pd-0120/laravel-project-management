@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/roles', [HomeController::class, 'roles'])->name('roles');
-Route::get('/permissions', [HomeController::class, 'permissions'])->name('permissions');
+Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('roles', [HomeController::class, 'roles'])->name('roles');
+Route::delete('roles-delete/{id}', [HomeController::class, 'roleDelete'])->name('roleDelete');
+
+Route::get('permissions', [HomeController::class, 'permissions'])->name('permissions');
 

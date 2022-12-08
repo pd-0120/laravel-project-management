@@ -24,6 +24,8 @@
 		<link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+        @stack('css')
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -338,6 +340,7 @@
 		<!--end::Page Vendors-->
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
+        @stack('js')
 		<!--end::Page Scripts-->
 	</body>
 	<!--end::Body-->
