@@ -18,9 +18,9 @@
                             <h3 class="card-label">Roles</h3>
                         </div>
                         <div class="card-toolbar">
-                            <a href="#" class="btn btn-primary font-weight-bolder">
-                            <span class="svg-icon svg-icon-md">
-                                <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                            <button  class="btn btn-primary font-weight-bolder edit-role" >
+                                <span class="svg-icon svg-icon-md">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <rect x="0" y="0" width="24" height="24"></rect>
@@ -29,7 +29,7 @@
                                     </g>
                                 </svg>
                                 <!--end::Svg Icon-->
-                            </span>New Record</a>
+                            </span>New Role</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -48,6 +48,35 @@
             <!--end::Container-->
         </div>
         <!--end::Entry-->
+    </div>
+
+    <div class="modal fade" id="createRole" tabindex="-1" role="dialog" aria-labelledby="createRole" aria-hidden="true">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                {!! Form::open(['route' => 'storeRole']) !!}
+                    <div class="modal-header">
+                        <h5 class="modal-title">Role</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i aria-hidden="true" class="ki ki-close"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label">Role Name:</label>
+                            <div class="col-lg-6">
+                                <input type="hidden" name="role-id" id="role-id">
+                                <input type="text" class="form-control" placeholder="Role name" name="name" id="name" required/>
+                                <span class="form-text text-muted">Please enter role name</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
     </div>
 @endsection
 @push('js')
@@ -69,6 +98,32 @@
 					{data:'action' , name:'action', orderable: false, searchable:false},
 				]
 			});
+
+            $(document).on('click', '.edit-role', function() {
+                $('#role-id').val($(this).data('id'))
+                $('#name').val($(this).data('name'))
+
+                $('#createRole').modal('show');
+            })
+
+            $(document).on('click', '.delete-role', function() {
+                const roleId = $(this).data('id')
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        document.getElementById(`delete-${roleId}`).submit()
+                    } else if (result.dismiss === "cancel") {
+                        Swal.fire("Cancelled", "", "error")
+                    }
+                });
+            })
 		});
 	</script>
 @endpush

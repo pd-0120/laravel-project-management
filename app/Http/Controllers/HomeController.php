@@ -38,7 +38,7 @@ class HomeController extends Controller
 			->editColumn('action', function ($data) {
                 $formData = \Form::model($data, ['route' => ['roleDelete', $data], 'method' => 'DELETE', 'id' => "delete-$data->id"]);
 
-                return "$formData<a type='button' href='javascript:void(0)' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role' data-id='$data->id'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2' onclick='javascript:confirm(`Are you sure want to delete this role ?`); document.getElementById(`delete-$data->id`).submit();'><i class='la fa-trash'></i></button>";
+                return "$formData<a type='button' href='javascript:void(0)' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role' data-id='$data->id' data-name='$data->name'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 delete-role' data-id='$data->id'><i class='la fa-trash'></i></button>";
             })
             ->make(true);
 		}
@@ -46,8 +46,17 @@ class HomeController extends Controller
         return view('rolePermission.role');
     }
 
-    public function storeRoles (Request $request) {
+    public function storeRole (Request $request) {
+        if($request->id) {
+            Role::where('id', $request->id)->update(['name' => $request->name]);
+        } else {
+            Role::updateOrCreate(['name' => $request->name, 'guard_name' => 'web']);
+        }
 
+        Session::flash('message.level', 'success');
+        Session::flash('message.content', 'Role saved successfully.');
+
+        return redirect()->back();
     }
 
     public function permissions (Request $request) {
