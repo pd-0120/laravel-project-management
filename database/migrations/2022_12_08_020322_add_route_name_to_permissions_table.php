@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::table('permissions', function (Blueprint $table) {
             $table->string('route_name')->nullable();
+            $table->string('alias')->nullable();
+            $table->string('module_name')->nullable();
+            $table->text('description')->nullable();
         });
     }
 
@@ -26,7 +29,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->dropColumn('route_name');
+            $table->dropColumn(['route_name', 'description' ,'module_name', 'alias']);
         });
     }
 };
