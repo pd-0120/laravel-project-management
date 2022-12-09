@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotesController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TechnologyController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +37,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('roles-delete/{id}', [HomeController::class, 'roleDelete'])->name('roleDelete');
 
     Route::get('permissions', [HomeController::class, 'permissions'])->name('permissions');
+
+	Route::resources([
+		'users' => UserController::class,
+		'tasks' => TaskController::class,
+		'notes' => NotesController::class,
+		'projects' => ProjectController::class,
+		'technologies' => TechnologyController::class,
+	]);
 });
