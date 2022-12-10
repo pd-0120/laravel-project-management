@@ -3,7 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Models\Country;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class UserComponent extends Component
 {
@@ -11,6 +16,7 @@ class UserComponent extends Component
 	public $identityDocument;
 	public $countries;
 	public $user;
+	public $roles;
 
 	public $state = [
 		'name' => null,
@@ -22,19 +28,34 @@ class UserComponent extends Component
 		'photo' => null,
 		'identity' => null,
 		'dob' => null,
+		'notes' => null,
 		'is_active' => 1,
+		'role' => ""
 	];
 
 	public $rules = [
 		'state.name' => 'required',
-		'state.email' => 'required',
-		'state.password' => 'required',
+		'state.email' => 'required|email|unique:users,email',
 		'state.country' => 'required',
-		'state.mobile' => 'required',
+		'state.mobile' => 'required|numeric',
 		'state.address' => 'required',
-		'state.photo' => 'required',
-		'state.identity' => 'required',
-		'state.dob' => 'required',
+		'state.dob' => 'required|date',
+		'state.notes' => 'nullable|max:150',
+		'state.role' => "required"
+	];
+
+	public $validationAttributes = [
+		'state.name' => 'name',
+		'state.email' => 'email',
+		'state.password' => 'password',
+		'state.country' => 'country',
+		'state.mobile' => 'mobile',
+		'state.address' => 'address',
+		'state.photo' => 'photo',
+		'state.identity' => 'identity',
+		'state.dob' => 'date of birth',
+		'state.notes' => 'notes',
+		'state.role' => 'role'
 	];
 
     public function render()
@@ -44,6 +65,7 @@ class UserComponent extends Component
 
 	public function mount() {
 		$this->countries = Country::all();
+		$this->roles = Role::all();
 
 		if($this->user) {
 			$this->state = $this->user->toArray();
@@ -52,5 +74,31 @@ class UserComponent extends Component
 
 	public function saveData(){
 		$this->validate();
+
+		if(!$this->user) {
+			$password = Str::random(8);
+			$user = new User();
+			$user->password = Hash::make($password);
+
+			Session::flash('message.content', 'User added successfully');
+
+		} else {
+			$user = $this->user;
+			Session::flash('message.level', 'User updated successfully');
+		}
+		$user->name = $this->state['name'];
+		$user->email = $this->state['email'];
+		$user->country = $this->state['country'];
+		$user->mobile = $this->state['mobile'];
+		$user->address = $this->state['address'];
+		$user->dob = $this->state['dob'];
+		$user->notes = $this->state['notes'];
+		$user->save();
+
+		$user->assignRole($this->state['role']);
+
+		Session::flash('message.level', 'success');
+
+		return redirect()->route('users.index');
 	}
 }

@@ -22,6 +22,7 @@ return new class extends Migration
 			$table->string('address')->nullable();
 			$table->string('photo')->nullable();
 			$table->string('identity')->nullable();
+			$table->string('notes')->nullable();
 			$table->date('dob')->nullable();
 			$table->boolean('is_active')->default(1);
             $table->timestamp('email_verified_at')->nullable();

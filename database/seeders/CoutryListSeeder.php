@@ -26,19 +26,21 @@ class CoutryListSeeder extends Seeder
 		if(File::exists(public_path('countries.json')))
 		{
 			$countries = json_decode(file_get_contents(public_path('countries.json')));
-
+			$countryData = [];
 			foreach($countries as $country)
 			{
-				Country::create([
-					'name'=>$country->name,
-					'alpha2Code'=>$country->alpha2Code,
-					'alpha3Code'=>$country->alpha3Code,
-					'callingCode'=>$country->callingCode,
-					'currencyCode'=>$country->currencyCode,
-					'numericCode'=>$country->numericCode,
-					'currencyName'=>$country->currencyName,
-					'currencySymbol'=>$country->currencySymbol]);
+				$countryData[] = [
+					'name' => $country->name,
+					'alpha2Code' => $country->alpha2Code,
+					'alpha3Code' => $country->alpha3Code,
+					'callingCode' => $country->callingCode,
+					'currencyCode' => $country->currencyCode,
+					'numericCode' => $country->numericCode,
+					'currencyName' => $country->currencyName,
+					'currencySymbol' => $country->currencySymbol
+				];
 			}
+			Country::insert($countryData);
 		}
 	}
 }
