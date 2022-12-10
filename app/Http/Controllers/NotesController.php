@@ -14,7 +14,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        //
+        return view('note.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class NotesController extends Controller
      */
     public function create()
     {
-        //
+		return view('note.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class NotesController extends Controller
      */
     public function edit(Note $note)
     {
-        //
+		return view('note.edit');
     }
 
     /**

@@ -18,7 +18,7 @@
 	<!--begin::Global Theme Styles(used by all pages)-->
 	<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
-	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<!--end::Global Theme Styles-->
 	<link href="{{ asset('assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet" type="text/css" />
@@ -48,12 +48,7 @@
 			<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
 				<span></span>
 			</button>
-			<!--end::Aside Mobile Toggle-->
-			<!--begin::Header Menu Mobile Toggle-->
-			<button class="btn p-0 burger-icon ml-5" id="kt_header_mobile_toggle">
-				<span></span>
-			</button>
-			<!--end::Header Menu Mobile Toggle-->
+
 			<!--begin::Topbar Mobile Toggle-->
 			<button class="btn btn-hover-text-primary p-0 ml-3" id="kt_header_mobile_topbar_toggle">
 				<span class="svg-icon svg-icon-xl">
@@ -124,16 +119,6 @@
 				<div id="kt_header" class="header header-fixed">
 					<!--begin::Container-->
 					<div class="container-fluid d-flex align-items-stretch justify-content-between">
-						<!--begin::Header Menu Wrapper-->
-						<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-							<!--begin::Header Menu-->
-							<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
-
-								<!--end::Header Nav-->
-							</div>
-							<!--end::Header Menu-->
-						</div>
-						<!--end::Header Menu Wrapper-->
 						<!--begin::Topbar-->
 						<div class="topbar">
 							<!--begin::User-->

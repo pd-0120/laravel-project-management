@@ -15,7 +15,7 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+		return view('technology.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        return view('technology.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+		return view('technology.edit');
     }
 
     /**
