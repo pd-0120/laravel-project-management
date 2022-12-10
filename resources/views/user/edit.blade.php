@@ -8,7 +8,9 @@
 	<!--begin::Entry-->
 	<div class="d-flex flex-column-fluid">
 		<!--begin::Container-->
-		<div class="container"></div>
+		<div class="container">
+			<livewire:user-component />
+		</div>
 		<!--end::Container-->
 	</div>
 	<!--end::Entry-->

@@ -27,7 +27,7 @@
 	<!--end::Layout Themes-->
 	<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
 	@stack('css')
-
+	@livewireStyles()
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -46,9 +46,6 @@
 		<div class="d-flex align-items-center">
 			<!--begin::Aside Mobile Toggle-->
 			<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
-				<span></span>
-			</button>
-			<button class="btn p-0 burger-icon ml-5" id="kt_header_mobile_toggle">
 				<span></span>
 			</button>
 			<!--begin::Topbar Mobile Toggle-->
@@ -271,7 +268,7 @@
 		</span>
 	</div>
 	<!--end::Scrolltop-->
-
+	@livewireScripts()
 	<!--begin::Global Config(global config for global JS scripts)-->
 	<script>
 		var KTAppSettings = {
