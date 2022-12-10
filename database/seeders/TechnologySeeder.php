@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,16 @@ class TechnologySeeder extends Seeder
      */
     public function run()
     {
-        //
+		$technologies = [
+			['name' => 'Laravel', 'description' => ''],
+			['name' => 'NodeJS', 'description' => ''],
+			['name' => 'Asp .Net', 'description' => ''],
+			['name' => 'ReactJS', 'description' => ''],
+			['name' => 'VueJS', 'description' => ''],
+			['name' => 'Livewire', 'description' => ''],
+			['name' => 'Ruby On Rails', 'description' => ''],
+			['name' => 'AngularJS', 'description' => ''],
+		];
+        Technology::insert($technologies);
     }
 }

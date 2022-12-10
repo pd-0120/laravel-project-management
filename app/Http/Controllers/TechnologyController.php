@@ -5,16 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTechnologyRequest;
 use App\Http\Requests\UpdateTechnologyRequest;
 use App\Models\Technology;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class TechnologyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+	/**
+	 * Display a listing of the resource.
+	 *@param Request $request
+	 * @return \Illuminate\Http\Response
+	 */
+    public function index(Request $request)
     {
+		if ($request->ajax()) {
+			$technologies = Technology::query();
+			return DataTables::eloquent($technologies)
+				->editColumn('action', function ($data) {
+					$formData = \Form::model($data, ['route' => ['technologies.destroy', $data], 'method' => 'DELETE', 'id' => "delete-$data->id"]);
+
+					return "$formData<a type='button' href='".route('technologies.edit', $data)."' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 delete-technology' data-id='$data->id'><i class='la fa-trash'></i></button>";
+				})
+				->make(true);
+		}
 		return view('technology.index');
     }
 

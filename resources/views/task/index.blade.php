@@ -6,7 +6,7 @@
 @section('contents')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<!--begin::Subheader-->
-	<x-page-subheader :pagename="'Roles'" />
+	<x-page-subheader :pagename="'Projects'" />
 	<!--end::Subheader-->
 	<!--begin::Entry-->
 	<div class="d-flex flex-column-fluid">
@@ -15,10 +15,10 @@
 			<div class="card card-custom gutter-b">
 				<div class="card-header flex-wrap border-0 pt-6 pb-0">
 					<div class="card-title">
-						<h3 class="card-label">Roles</h3>
+						<h3 class="card-label">Projects</h3>
 					</div>
 					<div class="card-toolbar">
-						<button class="btn btn-primary font-weight-bolder edit-role">
+						<a class="btn btn-primary font-weight-bolder edit-role" href="{{ route('projects.create') }}">
 							<span class="svg-icon svg-icon-md">
 								<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -32,7 +32,7 @@
 									</g>
 								</svg>
 								<!--end::Svg Icon-->
-							</span>New Role</button>
+							</span>New Project</a>
 					</div>
 				</div>
 				<div class="card-body">
@@ -95,7 +95,7 @@
 				],
 				serverSide: true,
 				scrollX: true,
-				ajax:"{{ route('roles') }}",
+				ajax:"{{ route('Projects') }}",
 				columns:[
 					{data:'name' , name:'name'},
 					{data:'guard_name' , name:'guard_name'},

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class NotesController extends Controller
 {
@@ -12,8 +13,19 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+		if ($request->ajax()) {
+			$notes = Note::query();
+			return DataTables::eloquent($notes)
+				->editColumn('action', function ($data) {
+					$formData = \Form::model($data, ['route' => ['notes.destroy', $data], 'method' => 'DELETE', 'id' => "delete-$data->id"]);
+
+					return "$formData<a type='button' href='" . route('notes.edit', $data) . "' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 delete-note' data-id='$data->id'><i class='la fa-trash'></i></button>";
+				})
+				->make(true);
+		}
+
         return view('note.index');
     }
 

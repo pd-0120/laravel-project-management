@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -12,8 +13,19 @@ class UserController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
+		if ($request->ajax()) {
+			$users = User::query();
+			return DataTables::eloquent($users)
+				->editColumn('action', function ($data) {
+					$formData = \Form::model($data, ['route' => ['users.destroy', $data], 'method' => 'DELETE', 'id' => "delete-$data->id"]);
+
+					return "$formData<a type='button' href='" . route('users.edit', $data) . "' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 delete-user' data-id='$data->id'><i class='la fa-trash'></i></button>";
+				})
+				->make(true);
+		}
+
 		return view('user.index');
 	}
 
