@@ -18,7 +18,7 @@
 	<!--begin::Global Theme Styles(used by all pages)-->
 	<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
-	<link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{  asset('assets/css/style.bundle.css')  }}" rel="stylesheet" type="text/css" />
 	<!--end::Global Theme Styles-->
 	<link href="{{ asset('assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet" type="text/css" />
@@ -48,7 +48,9 @@
 			<button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
 				<span></span>
 			</button>
-
+			<button class="btn p-0 burger-icon ml-5" id="kt_header_mobile_toggle">
+				<span></span>
+			</button>
 			<!--begin::Topbar Mobile Toggle-->
 			<button class="btn btn-hover-text-primary p-0 ml-3" id="kt_header_mobile_topbar_toggle">
 				<span class="svg-icon svg-icon-xl">
@@ -118,13 +120,13 @@
 				<!--begin::Header-->
 				<div id="kt_header" class="header header-fixed">
 					<!--begin::Container-->
-					<div class="container-fluid d-flex align-items-stretch justify-content-between">
+					<div class="container-fluid d-flex align-items-stretch justify-content-end">
 						<!--begin::Topbar-->
 						<div class="topbar">
 							<!--begin::User-->
 							<div class="topbar-item ml-4">
 								<div class="btn btn-icon btn-light-primary h-40px w-40px p-0" id="kt_quick_user_toggle">
-									<img src="assets/media/svg/avatars/004-boy-1.svg" class="h-30px align-self-end"
+									<img src="{{ asset('assets/media/svg/avatars/004-boy-1.svg') }}" class="h-30px align-self-end"
 										alt="" />
 								</div>
 							</div>
