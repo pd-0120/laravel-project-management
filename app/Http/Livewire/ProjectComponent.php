@@ -2,10 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\CustomClass\ChargeCycle;
+use App\Models\Country;
 use App\Models\Domain;
+use App\Models\Project;
 use App\Models\Technology;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class ProjectComponent extends Component
@@ -15,6 +19,9 @@ class ProjectComponent extends Component
 	public Collection $users;
 	public Collection $technologies;
 	public Collection $domains;
+	public Collection $currencies;
+
+	public array $chargeCycles;
 
 	public $state = [
 		'name' => null,
@@ -54,9 +61,13 @@ class ProjectComponent extends Component
 
 	public function mount()
 	{
+		$chargeCycle = new ChargeCycle();
+		$this->chargeCycles = $chargeCycle->getConstants();
+
 		$this->technologies = Technology::all();
 		$this->domains = Domain::all();
 		$this->users = User::all();
+		$this->currencies = Country::select('id', 'currencyName')->get();
 
 		if ($this->project) {
 			$this->state = $this->project->toArray();
@@ -67,4 +78,32 @@ class ProjectComponent extends Component
     {
         return view('livewire.project-component');
     }
+
+	public function saveData()
+	{
+		$this->validate();
+
+		if ($this->project) {
+			$project = $this->project;
+			Session::flash('message.content', 'Project updated successfully');
+		} else {
+			$project = new Project();
+			Session::flash('message.content', 'Project added successfully');
+		}
+
+		$project->name = $this->state['name'];
+		$project->description = $this->state['description'];
+		$project->url = $this->state['url'];
+		$project->user_id = $this->state['user_id'];
+		$project->charge = $this->state['charge'];
+		$project->currency = $this->state['currency'];
+		$project->charge_cycle = $this->state['charge_cycle'];
+		$project->technology_id = $this->state['technology_id'];
+		$project->domain_id = $this->state['domain_id'];
+		$project->save();
+
+		Session::flash('message.level', 'success');
+
+		return redirect()->route('projects.index');
+	}
 }
