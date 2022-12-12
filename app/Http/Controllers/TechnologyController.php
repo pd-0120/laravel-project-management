@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTechnologyRequest;
 use App\Http\Requests\UpdateTechnologyRequest;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
 
 class TechnologyController extends Controller
@@ -70,7 +71,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-		return view('technology.edit');
+		return view('technology.edit', compact('technology'));
     }
 
     /**
@@ -93,6 +94,11 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+		$technology->delete();
+
+		Session::flash('message.level', 'success');
+		Session::flash('message.content', 'Technology delete successfully.');
+
+		return redirect()->route('technologies.index');
     }
 }

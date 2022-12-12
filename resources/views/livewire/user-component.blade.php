@@ -74,25 +74,27 @@
 		</div>
 	</div>
 
-	<div class="form-group row">
-		<label for="example-email-input" class="col-2 col-form-label">Role:</label>
-		<div class="col-10">
-			<select wire:model="state.role" class="form-control @error('state.role') is-invalid @enderror">
-				<option value="">Select</option>
-				@foreach ($roles as $role)
-				<option value="{{ $role->name }}">{{ $role->name }}</option>
-				@endforeach
-			</select>
-			@error('state.role')
-			<div class="invalid-feedback">{{ $message }}</div>
-			@enderror
+	@if (Route::currentRouteName() !== "profile")
+		<div class="form-group row">
+			<label for="example-email-input" class="col-2 col-form-label">Role:</label>
+			<div class="col-10">
+				<select wire:model="state.role" class="form-control @error('state.role') is-invalid @enderror">
+					<option value="">Select</option>
+					@foreach ($roles as $role)
+					<option value="{{ $role->name }}">{{ $role->name }}</option>
+					@endforeach
+				</select>
+				@error('state.role')
+				<div class="invalid-feedback">{{ $message }}</div>
+				@enderror
+			</div>
 		</div>
-	</div>
+	@endif
 
 	<div class="form-group row">
-		<div class="col-2">
+		<div class="col-6">
 			<button type="submit" class="btn btn-success font-weight-bold mr-2">Submit</button>
-			<button type="submit" class="btn btn-light-success font-weight-bold">Cancel</button>
+			<button type="button" class="btn btn-light-success font-weight-bold">Cancel</button>
 		</div>
 	</div>
 </form>

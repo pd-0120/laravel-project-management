@@ -91,8 +91,4 @@ class HomeController extends Controller
 	{
 		return view('profile');
 	}
-
-	public function storeProfile(UpdateProfileRequest $request)
-	{
-	}
 }

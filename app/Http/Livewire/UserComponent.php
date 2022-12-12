@@ -40,7 +40,7 @@ class UserComponent extends Component
 		'state.mobile' => 'required|numeric',
 		'state.address' => 'required',
 		'state.dob' => 'required|date',
-		'state.notes' => 'nullable|max:150',
+		'state.notes' => 'nullable|min:0|max:150',
 		'state.role' => "required"
 	];
 
@@ -69,6 +69,11 @@ class UserComponent extends Component
 
 		if($this->user) {
 			$this->state = $this->user->toArray();
+			$this->state['role'] =  $this->user->getRoleNames()[0];
+			$userID = $this->user->id;
+			$rules = $this->rules;
+			$rules['state.email'] = "required|email|unique:users,email,$userID";
+			$this->rules = $rules;
 		}
 	}
 

@@ -72,14 +72,7 @@
 				]
 			});
 
-            $(document).on('click', '.edit-role', function() {
-                $('#role-id').val($(this).data('id'))
-                $('#name').val($(this).data('name'))
-
-                $('#createRole').modal('show');
-            })
-
-            $(document).on('click', '.delete-role', function() {
+            $(document).on('click', '.delete-technology', function() {
                 const roleId = $(this).data('id')
                 Swal.fire({
                     title: "Are you sure?",

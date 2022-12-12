@@ -30,7 +30,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('home', [HomeController::class, 'index'])->name('home');
 
     Route::get('profile', [HomeController::class, 'profile'])->name('profile');
-    Route::put('store-profile', [HomeController::class, 'storeProfile'])->name('storeProfile');
 
     Route::get('roles', [HomeController::class, 'roles'])->name('roles');
     Route::post('store-role', [HomeController::class, 'storeRole'])->name('storeRole');

@@ -9,7 +9,17 @@
 	<div class="d-flex flex-column-fluid">
 		<!--begin::Container-->
 		<div class="container">
-			<livewire:user-component />
+			<div class="card card-custom">
+				<div class="card-header">
+					<h3 class="card-title">
+						User
+					</h3>
+				</div>
+				<!--begin::Form-->
+				<div class="card-body">
+					<livewire:user-component :user="$user" />
+				</div>
+			</div>
 		</div>
 		<!--end::Container-->
 	</div>

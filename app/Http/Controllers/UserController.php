@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -16,7 +18,7 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		if ($request->ajax()) {
-			$users = User::query();
+			$users = User::query()->where('id', '!=', auth()->id());
 			return DataTables::eloquent($users)
 				->editColumn('action', function ($data) {
 					$formData = \Form::model($data, ['route' => ['users.destroy', $data], 'method' => 'DELETE', 'id' => "delete-$data->id"]);
@@ -58,7 +60,7 @@ class UserController extends Controller
 	 */
 	public function edit(User $user)
 	{
-		return view('user.edit');
+		return view('user.edit', compact('user'));
 	}
 
 	/**
@@ -69,6 +71,11 @@ class UserController extends Controller
 	 */
 	public function destroy(User $user)
 	{
-		//
+		$user->delete();
+
+		Session::flash('message.level', 'success');
+		Session::flash('message.content', 'User delete successfully.');
+
+		return redirect()->route('users.index');
 	}
 }
