@@ -14,7 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+			$table->id();
+			$table->string('name');
+			$table->text('description')->nullable();
+			$table->string('url')->nullable();
+			$table->integer('user_id')->comment("As in client ID")->nullable();
+			$table->double('charge', 10,2)->default(0);
+			$table->integer('currency')->nullable();
+			$table->string('charge_cycle')->nullable();
+			$table->integer('technology_id')->nullable();
+			$table->integer('domain_id')->nullable();
             $table->timestamps();
         });
     }
