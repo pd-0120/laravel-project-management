@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DomainController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ProjectController;
@@ -43,5 +44,6 @@ Route::group(['middleware' => 'auth'], function() {
 		'notes' => NotesController::class,
 		'projects' => ProjectController::class,
 		'technologies' => TechnologyController::class,
+		'domains' => DomainController::class,
 	]);
 });

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTechnologyRequest;
-use App\Http\Requests\UpdateTechnologyRequest;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -42,28 +40,6 @@ class TechnologyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTechnologyRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTechnologyRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Technology  $technology
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Technology $technology)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Technology  $technology
@@ -72,18 +48,6 @@ class TechnologyController extends Controller
     public function edit(Technology $technology)
     {
 		return view('technology.edit', compact('technology'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTechnologyRequest  $request
-     * @param  \App\Models\Technology  $technology
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTechnologyRequest $request, Technology $technology)
-    {
-        //
     }
 
     /**

@@ -6,7 +6,7 @@
 @section('contents')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<!--begin::Subheader-->
-	<x-page-subheader :pagename="'Technology'" />
+	<x-page-subheader :pagename="'Domain'" />
 	<!--end::Subheader-->
 	<!--begin::Entry-->
 	<div class="d-flex flex-column-fluid">
@@ -15,10 +15,10 @@
 			<div class="card card-custom gutter-b">
 				<div class="card-header flex-wrap border-0 pt-6 pb-0">
 					<div class="card-title">
-						<h3 class="card-label">Technology</h3>
+						<h3 class="card-label">Domain</h3>
 					</div>
 					<div class="card-toolbar">
-						<a class="btn btn-primary font-weight-bolder" href="{{ route('technologies.create') }}">
+						<a class="btn btn-primary font-weight-bolder" href="{{ route('domains.create') }}">
 							<span class="svg-icon svg-icon-md">
 								<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -32,7 +32,7 @@
 									</g>
 								</svg>
 								<!--end::Svg Icon-->
-							</span>New Technology</a>
+							</span>New Domain</a>
 					</div>
 				</div>
 				<div class="card-body">
@@ -65,14 +65,14 @@
 				],
 				serverSide: true,
 				scrollX: true,
-				ajax:"{{ route('technologies.index') }}",
+				ajax:"{{ route('domains.index') }}",
 				columns:[
 					{data:'name' , name:'name'},
 					{data:'action' , name:'action', orderable: false, searchable:false},
 				]
 			});
 
-            $(document).on('click', '.delete-technology', function() {
+            $(document).on('click', '.delete-domain', function() {
                 const roleId = $(this).data('id')
                 Swal.fire({
                     title: "Are you sure?",
