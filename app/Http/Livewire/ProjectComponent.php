@@ -66,7 +66,7 @@ class ProjectComponent extends Component
 
 		$this->technologies = Technology::all();
 		$this->domains = Domain::all();
-		$this->users = User::all();
+		$this->users = User::role('Client')->get();
 		$this->currencies = Country::select('id', 'currencyName')->get();
 
 		if ($this->project) {

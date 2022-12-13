@@ -55,7 +55,7 @@
 	</div>
 
 	<div class="form-group row">
-		<label for="example-email-input" class="col-2 col-form-label">Cleint:</label>
+		<label for="example-email-input" class="col-2 col-form-label">Client:</label>
 		<div class="col-10">
 			<select wire:model="state.user_id" class="form-control @error('state.user_id') is-invalid @enderror">
 				<option value="">Select</option>

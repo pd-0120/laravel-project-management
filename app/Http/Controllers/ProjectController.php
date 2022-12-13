@@ -73,6 +73,6 @@ class ProjectController extends Controller
 		Session::flash('message.level', 'success');
 		Session::flash('message.content', 'Technology delete successfully.');
 
-		return redirect()->route('technologies.index');
+		return redirect()->route('projects.index');
 	}
 }

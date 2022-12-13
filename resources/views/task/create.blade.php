@@ -8,7 +8,19 @@
 	<!--begin::Entry-->
 	<div class="d-flex flex-column-fluid">
 		<!--begin::Container-->
-		<div class="container"></div>
+		<div class="container">
+			<div class="card card-custom">
+				<div class="card-header">
+					<h3 class="card-title">
+						Task
+					</h3>
+				</div>
+				<!--begin::Form-->
+				<div class="card-body">
+					<livewire:task-component />
+				</div>
+			</div>
+		</div>
 		<!--end::Container-->
 	</div>
 	<!--end::Entry-->

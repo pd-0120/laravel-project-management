@@ -6,7 +6,7 @@
 @section('contents')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<!--begin::Subheader-->
-	<x-page-subheader :pagename="'Projects'" />
+	<x-page-subheader :pagename="'Tasks'" />
 	<!--end::Subheader-->
 	<!--begin::Entry-->
 	<div class="d-flex flex-column-fluid">
@@ -15,7 +15,7 @@
 			<div class="card card-custom gutter-b">
 				<div class="card-header flex-wrap border-0 pt-6 pb-0">
 					<div class="card-title">
-						<h3 class="card-label">Projects</h3>
+						<h3 class="card-label">Tasks</h3>
 					</div>
 					<div class="card-toolbar">
 						<a class="btn btn-primary font-weight-bolder edit-role" href="{{ route('projects.create') }}">
@@ -32,15 +32,14 @@
 									</g>
 								</svg>
 								<!--end::Svg Icon-->
-							</span>New Project</a>
+							</span>New Task</a>
 					</div>
 				</div>
 				<div class="card-body">
 					<table class="table table-separate table-head-custom table-checkable" id="datatable">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Gaurd</th>
+								<th>Description</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -53,35 +52,6 @@
 	<!--end::Entry-->
 </div>
 
-<div class="modal fade" id="createRole" tabindex="-1" role="dialog" aria-labelledby="createRole" aria-hidden="true">
-	<div class="modal-dialog  modal-lg" role="document">
-		<div class="modal-content">
-			{!! Form::open(['route' => 'storeRole']) !!}
-			<div class="modal-header">
-				<h5 class="modal-title">Role</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<i aria-hidden="true" class="ki ki-close"></i>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="form-group row">
-					<label class="col-lg-3 col-form-label">Role Name:</label>
-					<div class="col-lg-6">
-						<input type="hidden" name="role-id" id="role-id">
-						<input type="text" class="form-control" placeholder="Role name" name="name" id="name"
-							required />
-						<span class="form-text text-muted">Please enter role name</span>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
-			</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
-</div>
 @endsection
 @push('js')
 <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
@@ -95,22 +65,14 @@
 				],
 				serverSide: true,
 				scrollX: true,
-				ajax:"{{ route('Projects') }}",
+				ajax:"{{ route('tasks.index') }}",
 				columns:[
-					{data:'name' , name:'name'},
-					{data:'guard_name' , name:'guard_name'},
+					{data:'description' , name:'description'},
 					{data:'action' , name:'action', orderable: false, searchable:false},
 				]
 			});
 
-            $(document).on('click', '.edit-role', function() {
-                $('#role-id').val($(this).data('id'))
-                $('#name').val($(this).data('name'))
-
-                $('#createRole').modal('show');
-            })
-
-            $(document).on('click', '.delete-role', function() {
+            $(document).on('click', '.delete', function() {
                 const roleId = $(this).data('id')
                 Swal.fire({
                     title: "Are you sure?",
