@@ -22,17 +22,18 @@ class TaskController extends Controller
 				->editColumn('action', function ($data) {
 					$formData = \Form::model($data, ['route' => ['tasks.destroy', $data], 'method' => 'DELETE', 'id' => "delete-$data->id"]);
 
-					return "$formData<a type='button' href='" . route('tasks.edit', $data) . "' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 delete-task' data-id='$data->id'><i class='la fa-trash'></i></button>";
+					return "$formData<a type='button' href='" . route('tasks.edit', $data) . "' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 edit-role'><i class='la la-edit'></i></a><button type='button' class='btn btn-sm btn-clean btn-icon mr-2 mt-2 delete' data-id='$data->id'><i class='la fa-trash'></i></button>";
 				})
 				->make(true);
 		}
 
 		return view('task.index');
     }
-    public function store(Request $request)
-    {
-        //
-    }
+
+	public function create()
+	{
+		return view('task.create');
+	}
 
     /**
      * Display the specified resource.
