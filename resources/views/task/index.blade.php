@@ -18,7 +18,7 @@
 						<h3 class="card-label">Tasks</h3>
 					</div>
 					<div class="card-toolbar">
-						<a class="btn btn-primary font-weight-bolder edit-role" href="{{ route('projects.create') }}">
+						<a class="btn btn-primary font-weight-bolder edit-role" href="{{ route('tasks.create') }}">
 							<span class="svg-icon svg-icon-md">
 								<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
