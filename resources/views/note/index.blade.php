@@ -64,7 +64,7 @@
 				],
 				serverSide: true,
 				scrollX: true,
-				ajax:"{{ route('Notes') }}",
+				ajax:"{{ route('notes.index') }}",
 				columns:[
 					{data:'name' , name:'name'},
 					{data:'guard_name' , name:'guard_name'},
