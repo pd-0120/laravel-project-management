@@ -15,6 +15,8 @@ class TechnologySeeder extends Seeder
      */
     public function run()
     {
+		Technology::truncate();
+
 		$technologies = [
 			['name' => 'Laravel', 'description' => ''],
 			['name' => 'NodeJS', 'description' => ''],

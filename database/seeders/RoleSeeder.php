@@ -14,7 +14,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::query()->delete();
+        Role::truncate();
 
         $roles = [
             ["name" => "Super Admin", "guard_name" => "web"],

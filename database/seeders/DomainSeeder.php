@@ -16,6 +16,8 @@ class DomainSeeder extends Seeder
      */
     public function run()
     {
+		Domain::truncate();
+
 		$domains = [
 			['name' => 'Job Portal', 'description' => ''],
 			['name' => 'Crypto Tax Calculator', 'description' => ''],
