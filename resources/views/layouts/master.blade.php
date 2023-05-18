@@ -12,8 +12,6 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 	<!--end::Fonts-->
 
-	<link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
-		type="text/css" />
 	<!--end::Page Vendors Styles-->
 	<!--begin::Global Theme Styles(used by all pages)-->
 	<link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -340,7 +338,7 @@
 	<!--begin::Page Vendors(used by this page)-->
 	<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
 	<!--end::Page Vendors-->
-
+	@vite(['resources/js/app.js'])
 	@stack('js')
 	<!--end::Page Scripts-->
 </body>

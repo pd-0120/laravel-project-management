@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+			$table->string('title');
+			$table->text('description');
 			$table->foreignId('project_id')->nullable()->constrained('projects', 'id')->cascadeOnUpdate()->nullOnDelete();
-			$table->text('note');
-			$table->foreignId('created_by')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
+			$table->unsignedBigInteger('created_by')->nullable();
+			$table->unsignedBigInteger('updated_by')->nullable();
         });
     }
 

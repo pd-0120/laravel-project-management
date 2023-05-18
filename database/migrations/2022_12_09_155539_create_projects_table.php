@@ -24,6 +24,8 @@ return new class extends Migration
 			$table->string('charge_cycle')->nullable();
 			$table->integer('technology_id')->nullable();
 			$table->integer('domain_id')->nullable();
+			$table->unsignedBigInteger('created_by')->nullable();
+			$table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

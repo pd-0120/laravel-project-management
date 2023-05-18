@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Wildside\Userstamps\Userstamps;
 
 class Country extends Model
 {
-    use HasFactory;
+    use HasFactory, Userstamps;
 
 	protected $fillable = ['name', 'countryCode', 'alpha2Code', 'alpha3Code', 'callingCode', 'numericCode', 'currencyName', 'currencyCode', 'currencySymbol'];
 
